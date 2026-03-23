@@ -81,10 +81,17 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: `Could not fetch file tree for branch ${defaultBranch}.` }, { status: treeRes.status });
     }
 
+    interface GitHubTreeItem {
+      path: string;
+      type: string;
+      size?: number;
+      url: string;
+    }
+
     const treeData = await treeRes.json();
 
     // Filter to code files only, skip large files (>100KB, size in bytes)
-    const codeFiles = (treeData.tree as any[]).filter(item =>
+    const codeFiles = (treeData.tree as GitHubTreeItem[]).filter(item =>
       item.type === "blob" &&
       !shouldSkip(item.path) &&
       CODE_EXTENSIONS.has(getExtension(item.path)) &&
@@ -107,7 +114,9 @@ export async function POST(req: Request) {
           const data = await res.json();
           const content = Buffer.from(data.content, "base64").toString("utf-8").slice(0, 10000);
           return { path: file.path, content };
-        } catch {
+        } catch (err: unknown) {
+          // Log the error for debugging, but continue processing other files
+          console.error(`Error fetching content for ${file.path}:`, err);
           return null;
         }
       })
@@ -190,16 +199,21 @@ You MUST output ONLY a valid JSON object with this exact schema:
     let cleanJson = textResponse
       .replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/```\s*$/i, "").trim();
 
-    const match = cleanJson.match(/\{[\s\S]*\}/);
-    if (match) cleanJson = match[0];
-
-    let resultJson: any;
+    let resultJson: { 
+      fileReviews?: Array<{
+        path: string;
+        score: number;
+        notes: string;
+        content?: string;
+      }>;
+      [key: string]: unknown;
+    };
     try { resultJson = JSON.parse(cleanJson); }
     catch { throw new Error("AI returned malformed response. Please try again."); }
 
     // Re-attach content to file reviews for the UI
     if (resultJson.fileReviews && Array.isArray(resultJson.fileReviews)) {
-      resultJson.fileReviews = resultJson.fileReviews.map((fr: any) => {
+      resultJson.fileReviews = resultJson.fileReviews.map((fr) => {
         const fileMatch = validFiles.find(f => f.path === fr.path);
         return {
           ...fr,
@@ -214,9 +228,9 @@ You MUST output ONLY a valid JSON object with this exact schema:
       totalFilesInRepo: codeFiles.length,
     }, { status: 200 });
 
-  } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : "Failed to analyze repository";
-    console.error("GitHub Review Error:", error);
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : "Failed to analyze repository";
+    console.error("GitHub Review Error:", err);
     return NextResponse.json(
       { error: errorMessage },
       { status: 500 }

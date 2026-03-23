@@ -104,8 +104,8 @@ export default function GitHubPage() {
       if (data.fileReviews?.length > 0) {
         setSelectedFilePath(data.fileReviews[0].path);
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Analysis failed");
     } finally {
       setIsLoading(false);
     }
