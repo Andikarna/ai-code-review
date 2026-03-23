@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+
+# No 'publish' directory here. Netlify's Next.js runtime 
+# will automatically find the build output.
+
+# The @netlify/plugin-nextjs is now automatically 
+# included by Netlify for Next.js sites, but we'll 
+# keep it if you have an older site setup.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
