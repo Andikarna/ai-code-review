@@ -59,6 +59,9 @@ export type Translations = {
   githubTokenPlaceholder: string;
   githubNavCode: string;
   githubNavGithub: string;
+  statusCritical: string;
+  statusWarning: string;
+  statusGood: string;
 };
 
 const translations: Record<AppLocale, Translations> = {
@@ -111,6 +114,9 @@ const translations: Record<AppLocale, Translations> = {
     githubTokenPlaceholder: "ghp_...",
     githubNavCode: "Code Review",
     githubNavGithub: "GitHub Review",
+    statusCritical: "Critical",
+    statusWarning: "Warning",
+    statusGood: "Good",
   },
   id: {
     appTagline: "Review kode lebih cerdas.",
@@ -161,6 +167,9 @@ const translations: Record<AppLocale, Translations> = {
     githubTokenPlaceholder: "ghp_...",
     githubNavCode: "Review Kode",
     githubNavGithub: "Review GitHub",
+    statusCritical: "Kritis",
+    statusWarning: "Peringatan",
+    statusGood: "Bagus",
   },
   zh: {
     appTagline: "更智能地审查代码。",
@@ -211,6 +220,9 @@ const translations: Record<AppLocale, Translations> = {
     githubTokenPlaceholder: "ghp_...",
     githubNavCode: "代码审查",
     githubNavGithub: "GitHub 审查",
+    statusCritical: "严重问题",
+    statusWarning: "警告",
+    statusGood: "良好",
   },
   ja: {
     appTagline: "よりスマートにコードをレビュー。",
@@ -261,6 +273,9 @@ const translations: Record<AppLocale, Translations> = {
     githubTokenPlaceholder: "ghp_...",
     githubNavCode: "コードレビュー",
     githubNavGithub: "GitHub レビュー",
+    statusCritical: "致命的",
+    statusWarning: "警告",
+    statusGood: "良好",
   },
   ar: {
     appTagline: "راجع الكود بذكاء أكثر.",
@@ -311,6 +326,9 @@ const translations: Record<AppLocale, Translations> = {
     githubTokenPlaceholder: "ghp_...",
     githubNavCode: "مراجعة الكود",
     githubNavGithub: "مراجعة GitHub",
+    statusCritical: "حرج",
+    statusWarning: "تحذير",
+    statusGood: "جيد",
   },
 };
 

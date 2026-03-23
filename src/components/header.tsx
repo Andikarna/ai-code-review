@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Sun, Code2, Globe } from "lucide-react";
+import { Moon, Sun, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState, useRef } from "react";
 import { LOCALES, AppLocale } from "@/lib/i18n";
