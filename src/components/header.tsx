@@ -36,9 +36,18 @@ export function Header({ locale, onLocaleChange }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between mx-auto px-4 md:px-8">
-        <div className="flex items-center gap-2 font-bold text-lg tracking-tight">
-          <Code2 className="w-5 h-5 text-primary" />
-          <span>AI Code Reviewer</span>
+        <div className="flex items-center gap-2.5 font-bold text-lg tracking-tight">
+          <div className="relative w-8 h-8 overflow-hidden rounded-lg border border-primary/20 shadow-sm">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="/logo.png" 
+              alt="Logo" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+            AI Code Reviewer
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
