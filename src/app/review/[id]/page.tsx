@@ -7,7 +7,6 @@ import Editor from "@monaco-editor/react";
 import { useTheme } from "next-themes";
 import { ReviewHistoryItem } from "@/components/history-sidebar";
 import { AppLocale, getTranslations } from "@/lib/i18n";
-import { ReviewData } from "@/components/review-result";
 
 function getScoreColor(score: number) {
   if (score >= 80) return "text-green-500 bg-green-500/10 border-green-500/20";
@@ -21,7 +20,7 @@ function getScoreBg(score: number) {
   return "from-red-500/20 to-transparent";
 }
 
-function getScoreLabel(score: number, t: any) {
+function getScoreLabel(score: number) {
   if (score >= 80) return { text: "Excellent", color: "text-green-500" };
   if (score >= 60) return { text: "Good", color: "text-yellow-500" };
   if (score >= 40) return { text: "Needs Work", color: "text-orange-500" };
@@ -95,7 +94,7 @@ export default function ReviewDetailPage({ params }: { params: { id: string } })
   }
 
   const { result, language } = item;
-  const scoreLabel = getScoreLabel(result.score, t);
+  const scoreLabel = getScoreLabel(result.score);
 
   return (
     <div className="min-h-screen bg-background">

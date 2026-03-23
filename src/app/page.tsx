@@ -79,7 +79,7 @@ function calculateTotal(items) {
         timestamp: new Date().toISOString(),
         language: LANGUAGES.find(l => l.id === language)?.name || language,
         snippet: code.slice(0, 50).replace(/\n/g, " ") + "...",
-        score: parseInt((data as ReviewData).score as any, 10),
+        score: parseInt((data as ReviewData).score as unknown as string, 10),
         result: data as ReviewData,
         locale,
       };
@@ -90,8 +90,9 @@ function calculateTotal(items) {
       // Persist to sessionStorage so navigating back preserves the result
       sessionStorage.setItem(SESSION_KEY, JSON.stringify(data));
       sessionStorage.setItem(SESSION_ID_KEY, newId);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Something went wrong";
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }

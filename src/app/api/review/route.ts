@@ -90,7 +90,7 @@ export async function POST(req: Request) {
     const jsonMatch = cleanJson.match(/\{[\s\S]*\}/);
     if (jsonMatch) cleanJson = jsonMatch[0];
 
-    let parsed: any;
+    let parsed: unknown;
     try {
       parsed = JSON.parse(cleanJson);
     } catch {
@@ -99,10 +99,11 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(parsed, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Failed to process the code review";
     console.error("AI Code Review Server Error:", error);
     return NextResponse.json(
-      { error: error?.message || "Failed to process the code review" },
+      { error: errorMessage },
       { status: 500 }
     );
   }
