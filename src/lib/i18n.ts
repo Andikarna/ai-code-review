@@ -43,6 +43,22 @@ export type Translations = {
   fullReportDesc: string;
   notFound: string;
   resetAnalysis: string;
+  // GitHub integration
+  githubReview: string;
+  githubReviewDesc: string;
+  githubUrlLabel: string;
+  githubUrlPlaceholder: string;
+  githubAnalyze: string;
+  githubAnalyzing: string;
+  githubFilesFound: string;
+  githubNoFiles: string;
+  githubRepoSummary: string;
+  githubFileReviews: string;
+  githubPrivateNote: string;
+  githubTokenLabel: string;
+  githubTokenPlaceholder: string;
+  githubNavCode: string;
+  githubNavGithub: string;
 };
 
 const translations: Record<AppLocale, Translations> = {
@@ -80,6 +96,21 @@ const translations: Record<AppLocale, Translations> = {
     fullReportDesc: "Complete AI analysis for your code snippet",
     notFound: "Review not found. It may have been cleared from history.",
     resetAnalysis: "New Analysis",
+    githubReview: "GitHub Review",
+    githubReviewDesc: "Enter a public GitHub repository URL to review all code files in the repo.",
+    githubUrlLabel: "Repository URL",
+    githubUrlPlaceholder: "https://github.com/owner/repo",
+    githubAnalyze: "Analyze Repository",
+    githubAnalyzing: "Analyzing...",
+    githubFilesFound: "files analyzed",
+    githubNoFiles: "No code files found in this repository.",
+    githubRepoSummary: "Repository Summary",
+    githubFileReviews: "File Reviews",
+    githubPrivateNote: "Only public repositories are supported without a token.",
+    githubTokenLabel: "GitHub Token (optional, for private repos)",
+    githubTokenPlaceholder: "ghp_...",
+    githubNavCode: "Code Review",
+    githubNavGithub: "GitHub Review",
   },
   id: {
     appTagline: "Review kode lebih cerdas.",
@@ -115,6 +146,21 @@ const translations: Record<AppLocale, Translations> = {
     fullReportDesc: "Analisis AI lengkap untuk kode kamu",
     notFound: "Review tidak ditemukan. Mungkin sudah dihapus dari riwayat.",
     resetAnalysis: "Analisis Baru",
+    githubReview: "Review GitHub",
+    githubReviewDesc: "Masukkan URL repo GitHub publik untuk mereview semua file kode di dalamnya.",
+    githubUrlLabel: "URL Repository",
+    githubUrlPlaceholder: "https://github.com/owner/repo",
+    githubAnalyze: "Analisis Repository",
+    githubAnalyzing: "Menganalisis...",
+    githubFilesFound: "file dianalisis",
+    githubNoFiles: "Tidak ada file kode ditemukan di repository ini.",
+    githubRepoSummary: "Ringkasan Repository",
+    githubFileReviews: "Review Per File",
+    githubPrivateNote: "Hanya repo publik yang didukung tanpa token.",
+    githubTokenLabel: "GitHub Token (opsional, untuk repo private)",
+    githubTokenPlaceholder: "ghp_...",
+    githubNavCode: "Review Kode",
+    githubNavGithub: "Review GitHub",
   },
   zh: {
     appTagline: "更智能地审查代码。",
@@ -150,6 +196,21 @@ const translations: Record<AppLocale, Translations> = {
     fullReportDesc: "AI 对代码片段的完整分析",
     notFound: "未找到审查记录，可能已被清除。",
     resetAnalysis: "新分析",
+    githubReview: "GitHub 审查",
+    githubReviewDesc: "输入公开 GitHub 仓库 URL 以审查其中的所有代码文件。",
+    githubUrlLabel: "仓库 URL",
+    githubUrlPlaceholder: "https://github.com/owner/repo",
+    githubAnalyze: "分析仓库",
+    githubAnalyzing: "分析中...",
+    githubFilesFound: "个文件已分析",
+    githubNoFiles: "未在此仓库中找到代码文件。",
+    githubRepoSummary: "仓库摘要",
+    githubFileReviews: "文件审查",
+    githubPrivateNote: "无令牌时仅支持公开仓库。",
+    githubTokenLabel: "GitHub 令牌（可选，用于私有仓库）",
+    githubTokenPlaceholder: "ghp_...",
+    githubNavCode: "代码审查",
+    githubNavGithub: "GitHub 审查",
   },
   ja: {
     appTagline: "よりスマートにコードをレビュー。",
@@ -185,6 +246,21 @@ const translations: Record<AppLocale, Translations> = {
     fullReportDesc: "コードスニペットのAI分析レポート",
     notFound: "レビューが見つかりません。履歴から削除された可能性があります。",
     resetAnalysis: "新しい分析",
+    githubReview: "GitHub レビュー",
+    githubReviewDesc: "公開 GitHub リポジトリ URL を入力して、全ファイルをレビューします。",
+    githubUrlLabel: "リポジトリ URL",
+    githubUrlPlaceholder: "https://github.com/owner/repo",
+    githubAnalyze: "リポジトリを分析",
+    githubAnalyzing: "分析中...",
+    githubFilesFound: "ファイル分析完了",
+    githubNoFiles: "コードファイルが見つかりません。",
+    githubRepoSummary: "リポジトリの概要",
+    githubFileReviews: "ファイルレビュー",
+    githubPrivateNote: "トークンなしでは公開リポジトリのみ対応しています。",
+    githubTokenLabel: "GitHub トークン（プライベートリポ用）",
+    githubTokenPlaceholder: "ghp_...",
+    githubNavCode: "コードレビュー",
+    githubNavGithub: "GitHub レビュー",
   },
   ar: {
     appTagline: "راجع الكود بذكاء أكثر.",
@@ -220,6 +296,21 @@ const translations: Record<AppLocale, Translations> = {
     fullReportDesc: "التحليل الكامل للذكاء الاصطناعي لمقتطف الكود",
     notFound: "لم يتم العثور على المراجعة. ربما تم مسحها من السجل.",
     resetAnalysis: "تحليل جديد",
+    githubReview: "مراجعة GitHub",
+    githubReviewDesc: "أدخل رابط مستودع GitHub عام لمراجعة جميع ملفات الكود.",
+    githubUrlLabel: "رابط المستودع",
+    githubUrlPlaceholder: "https://github.com/owner/repo",
+    githubAnalyze: "تحليل المستودع",
+    githubAnalyzing: "جاري التحليل...",
+    githubFilesFound: "ملف تم تحليله",
+    githubNoFiles: "لم يتم العثور على ملفات كود في هذا المستودع.",
+    githubRepoSummary: "ملخص المستودع",
+    githubFileReviews: "مراجعة الملفات",
+    githubPrivateNote: "يدعم فقط المستودعات العامة بدون رمز.",
+    githubTokenLabel: "رمز GitHub (اختياري)",
+    githubTokenPlaceholder: "ghp_...",
+    githubNavCode: "مراجعة الكود",
+    githubNavGithub: "مراجعة GitHub",
   },
 };
 

@@ -9,7 +9,7 @@ import { ReviewResult, ReviewData } from "@/components/review-result";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { nanoid } from "nanoid";
 import { AppLocale, getTranslations } from "@/lib/i18n";
-import { ExternalLink, RotateCcw } from "lucide-react";
+import { ExternalLink, RotateCcw, Github, Code2 } from "lucide-react";
 
 const SESSION_KEY = "ai-review-active-result";
 const SESSION_ID_KEY = "ai-review-active-id";
@@ -116,6 +116,23 @@ function calculateTotal(items) {
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-background">
       <Header locale={locale} onLocaleChange={setLocale} />
+
+      {/* Tab Navigation */}
+      <div className="border-b bg-card shrink-0">
+        <div className="flex justify-center gap-0 px-4 md:px-8">
+          <button className="flex items-center gap-2 px-5 py-3 text-sm font-medium border-b-2 border-primary text-primary">
+            <Code2 className="w-4 h-4" />
+            {t.githubNavCode}
+          </button>
+          <button
+            onClick={() => router.push("/github")}
+            className="flex items-center gap-2 px-5 py-3 text-sm font-medium border-b-2 border-transparent text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Github className="w-4 h-4" />
+            {t.githubNavGithub}
+          </button>
+        </div>
+      </div>
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
