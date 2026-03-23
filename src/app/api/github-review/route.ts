@@ -196,10 +196,10 @@ You MUST output ONLY a valid JSON object with this exact schema:
     const textResponse = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!textResponse) throw new Error("No response from AI model.");
 
-    let cleanJson = textResponse
+    const cleanJson = textResponse
       .replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/```\s*$/i, "").trim();
 
-    let resultJson: { 
+    const resultJson: { 
       fileReviews?: Array<{
         path: string;
         score: number;
@@ -207,9 +207,10 @@ You MUST output ONLY a valid JSON object with this exact schema:
         content?: string;
       }>;
       [key: string]: unknown;
-    };
-    try { resultJson = JSON.parse(cleanJson); }
-    catch { throw new Error("AI returned malformed response. Please try again."); }
+    } = (() => {
+      try { return JSON.parse(cleanJson); }
+      catch { throw new Error("AI returned malformed response. Please try again."); }
+    })();
 
     // Re-attach content to file reviews for the UI
     if (resultJson.fileReviews && Array.isArray(resultJson.fileReviews)) {
